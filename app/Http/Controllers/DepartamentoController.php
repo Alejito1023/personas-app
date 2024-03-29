@@ -78,7 +78,12 @@ class DepartamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departamento = Departamento::find($id);
+        $paises = DB::table('tb_pais')
+        ->orderBy('pais_nomb')
+        ->get();
+
+        return view ('departamento.edit' , ['departamento' => $departamento, 'departamentos' => $paises]);
     }
 
     /**
