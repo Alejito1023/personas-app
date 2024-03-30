@@ -83,7 +83,7 @@ class MunicipioController extends Controller
         ->orderBy('depa_nomb')
         ->get();
 
-        return view ('municipio.edit' , ['municipio' => $municipio, 'municipios' => $departamentos]);
+        return view ('municipio.edit' , ['municipio' => $municipio, 'departamentos' => $departamentos]);
     }
 
     /**
@@ -101,7 +101,7 @@ class MunicipioController extends Controller
         $municipio->depa_codi = $request->code;
         $municipio->save();
 
-        $municipios = DB::table('tb_comuna ')
+        $municipios = DB::table('tb_municipio')
         ->join('tb_departamento', 'tb_municipio.depa_codi', '=' , 'tb_departamento.depa_codi')
         ->select('tb_municipio.*', 'tb_departamento.depa_nomb')
         ->get();
@@ -121,7 +121,7 @@ class MunicipioController extends Controller
         $municipio->delete();
 
         $municipios = DB::table('tb_municipio')
-        ->join('tb_departamento', 'tb.municipio.depa_codi', '=' , 'tb_departamento.depa_codi')
+        ->join('tb_departamento', 'tb_municipio.depa_codi', '=' , 'tb_departamento.depa_codi')
         ->select('tb_municipio.*', 'tb_departamento.depa_nomb')
         ->get();
 

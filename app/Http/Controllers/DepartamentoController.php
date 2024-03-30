@@ -47,11 +47,11 @@ class DepartamentoController extends Controller
     {
         $departamento = new Departamento();
 
-        $departamento->muni_nomb = $request->name;
-        $departamento->depa_codi = $request->code;
+        $departamento->depa_nomb = $request->name;
+        $departamento->pais_codi = $request->code;
         $departamento->save();
 
-        $departamentos = DB::table('tb_departamentos')
+        $departamentos = DB::table('tb_departamento')
         ->join('tb_pais', 'tb_departamento.pais_codi', '=' , 'tb_pais.pais_codi')
         ->select('tb_departamento.*' , "tb_pais.pais_nomb")
         ->get();
@@ -83,7 +83,7 @@ class DepartamentoController extends Controller
         ->orderBy('pais_nomb')
         ->get();
 
-        return view ('departamento.edit' , ['departamento' => $departamento, 'departamentos' => $paises]);
+        return view ('departamento.edit' , ['departamento' => $departamento, 'paises' => $paises]);
     }
 
     /**
@@ -101,7 +101,7 @@ class DepartamentoController extends Controller
         $departamento->pais_codi = $request->code;
         $departamento->save();
 
-        $departamentos = DB::table('tb_departamento ')
+        $departamentos = DB::table('tb_departamento')
         ->join('tb_pais', 'tb_departamento.pais_codi', '=' , 'tb_pais.pais_codi')
         ->select('tb_departamento.*', 'tb_pais.pais_nomb')
         ->get();
@@ -120,8 +120,8 @@ class DepartamentoController extends Controller
         $departamento = Departamento::find($id);
         $departamento->delete();
 
-        $departamentos = DB::table('tb_departamentos')
-        ->join('tb_pais', 'tb.departamento.pais_codi', '=' , 'tb_pais.pais_codi')
+        $departamentos = DB::table('tb_departamento')
+        ->join('tb_pais', 'tb_departamento.pais_codi', '=' , 'tb_pais.pais_codi')
         ->select('tb_departamento.*', 'tb_pais.pais_nomb')
         ->get();
 
