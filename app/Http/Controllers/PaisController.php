@@ -102,6 +102,14 @@ class PaisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pais = Pais::find($id);
+        $pais->delete();
+
+        $paises = DB::table('tb_pais')
+        ->join('tb_municipio', 'tb_pais.pais_codi', '=' , 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')
+        ->get();
+
+        return view ('pais.index' , ['paises' => $paises]);
     }
 }
