@@ -27,16 +27,16 @@
             <tbody>
                 @foreach ($paises as $pais)
                 <tr>
-                     <th scope="row">{{ $paises->pais_codi}}</th>
-                     <td>{{ $paises->pais_nomb}}</td>
-                     <td>{{ $paises->pais_capi}}</td>
-                     <td>@mdo</td>
+                     <th scope="row">{{ $pais->pais_codi}}</th>
+                     <td>{{ $pais->pais_nomb}}</td>
+                     <td>{{ $pais->pais_capi}}</td>
+                     <td><span> Acciones </span></td>
               </tr>
               @endforeach
             </tbody>
           </table>
     </div>
-    
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
