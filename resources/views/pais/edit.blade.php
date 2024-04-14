@@ -16,7 +16,7 @@
     <div class="container">
       
        <h1>Add Paises</h1>
-       <form method="POST" action="{{ route("paises.update")['pais' =>$pais->pais_codi] }}">
+       <form method="POST" action="{{ route("paises.update" , ['pais' => $pais->pais_codi]) }}">
         @method('put')
         @csrf
         <div class="mb-3">
@@ -29,7 +29,7 @@
         <div class="mb-3">
           <label for="name" class="form-label">Country</label>
           <input type="text" required class="form-control" id="name" aria-describedby="Country Help"
-             name="name" value="{{}}">
+             name="name" value="{{ $pais->pais_nomb}}">
         </div>
 
         <label for="municipality">Municipality :</label>
